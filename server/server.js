@@ -16,6 +16,12 @@ io.on('connection', (socket) => {
 
   socket.on('createMessage', (message) => {
     console.log('Create Message', message);
+
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: message.createdAt
+    })
   });
 
   socket.on('disconnect', (socket) => {
@@ -24,7 +30,8 @@ io.on('connection', (socket) => {
 
   socket.emit('newMessage', {
     to: 'Dipak',
-    text: 'Sorry!'
+    text: 'Sorry!',
+    createdAt: 124252452
   });
 });
 
