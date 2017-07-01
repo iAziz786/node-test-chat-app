@@ -11,3 +11,11 @@ socket.on('disconnect', function () {
 socket.on('newMessage', function (message) {
   console.log('New message', message);
 });
+
+socket.on('welcomeMessage', (message) => {
+  console.log(`Welcome ${message.name}! You've joined the chatroom.`);
+});
+
+socket.on('newUserJoin', (message) => {
+  console.log(`New User Joined: ${message.name}`);
+});

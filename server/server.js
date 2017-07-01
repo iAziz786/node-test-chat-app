@@ -14,18 +14,21 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('New user connected');
 
+  socket.emit('welcomeMessage', {
+    name: 'Aziz',
+  });
+
+  socket.broadcast.emit('newUserJoin', {
+    name: 'Aziz'
+  });
+
   socket.on('createMessage', (message) => {
     console.log('Create Message', message);
 
-    // io.emit('newMessage', {
-    //   from: message.from,
-    //   text: message.text,
-    //   createdAt: message.createdAt
-    // });
-    socket.broadcast.emit('newMessage', {
+    io.emit('newMessage', {
       from: message.from,
       text: message.text,
-      createdAt: new Date().getTime()
+      createdAt: message.createdAt
     });
   });
 
