@@ -13,9 +13,9 @@ socket.on('newMessage', function (message) {
 });
 
 socket.on('welcomeMessage', (message) => {
-  console.log(`Welcome ${message.name}! You've joined the chatroom.`);
+  console.log(message.text, message.from);
 });
 
 socket.on('newUserJoin', (message) => {
-  console.log(`New User Joined: ${message.name}`);
+  console.log(message.text, message.from);
 });
