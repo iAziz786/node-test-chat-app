@@ -17,21 +17,20 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message) => {
     console.log('Create Message', message);
 
-    io.emit('newMessage', {
+    // io.emit('newMessage', {
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt: message.createdAt
+    // });
+    socket.broadcast.emit('newMessage', {
       from: message.from,
       text: message.text,
-      createdAt: message.createdAt
-    })
+      createdAt: new Date().getTime()
+    });
   });
 
   socket.on('disconnect', (socket) => {
     console.log('Disconnected from new user');
-  });
-
-  socket.emit('newMessage', {
-    to: 'Dipak',
-    text: 'Sorry!',
-    createdAt: 124252452
   });
 });
 
